@@ -2,3 +2,6 @@
 body{
     background: #FAFAFA;
 }
+button:hover{
+    cursor: pointer;
+}

@@ -18,3 +18,7 @@
     height: 32px;
     float: left;
 }
+
+.add-post:hover{
+    cursor: cell;
+}

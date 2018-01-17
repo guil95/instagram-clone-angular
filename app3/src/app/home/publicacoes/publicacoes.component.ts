@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Bd } from '../../bd.service'
 
 @Component({
   selector: 'app-publicacoes',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicacoesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private bd: Bd) { }
 
   ngOnInit() {
+   
   }
 
-}
+
+} 
