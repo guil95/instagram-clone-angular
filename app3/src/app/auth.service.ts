@@ -26,9 +26,8 @@ export class Auth{
 
     }
 
-    public autenticar(usuario):void{
-        console.log(usuario)
-        firebase.auth().signInWithEmailAndPassword(
+    public autenticar(usuario): Promise<any>{
+        return firebase.auth().signInWithEmailAndPassword(
             usuario.email, 
             usuario.senha
         )
@@ -39,9 +38,6 @@ export class Auth{
                     localStorage.setItem('token', token)
                     this.router.navigate(['/home'])
                 })
-        })
-        .catch((err) => {
-            console.log(err)
         })
     }
 

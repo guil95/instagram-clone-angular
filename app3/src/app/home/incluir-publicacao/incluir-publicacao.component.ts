@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms'
 import { Bd } from '../../bd.service'
 import * as firebase from 'firebase'
@@ -15,6 +15,7 @@ import { Subject } from 'rxjs/Subject';
 })
 export class IncluirPublicacaoComponent implements OnInit {
 
+  @Output() public atualizarTimeLine: EventEmitter<any> = new EventEmitter<any>()
   public imagem: any
   public email: string
   
@@ -46,7 +47,7 @@ export class IncluirPublicacaoComponent implements OnInit {
       imagem: imagem
     })
 
-    let acompanhamentoUpload = Observable.interval(1500)
+    let acompanhamentoUpload = Observable.interval(2000)
 
     let next = new Subject()
 
@@ -68,6 +69,8 @@ export class IncluirPublicacaoComponent implements OnInit {
         
         if(this.progresso.status === 'concluido'){
           this.progressoPublicacao = 'concluido'
+          //emitir evento do component pai
+          this.atualizarTimeLine.emit()
           next.next(false)
         }
       })
@@ -77,6 +80,11 @@ export class IncluirPublicacaoComponent implements OnInit {
   public preparaImagemUpload (evento: Event): void{
     this.imagem = (<HTMLInputElement>event.target).files
 
+  }
+
+  public resetarForm():void{
+    this.progressoPublicacao = 'pendente'
+    this.formulario.reset()
   }
 
 }

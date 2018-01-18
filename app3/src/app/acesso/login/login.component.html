@@ -23,7 +23,7 @@
     </form>
     <hr />
 
-    <p class="small text-danger text-center">O nome de usuário inserido não pertence a uma conta. Verifique seu nome de usuário e tente novamente.</p>
+    <p class="small text-danger text-center" *ngIf="errorMessageLogin !== ''">{{errorMessageLogin}}</p>
 
   </div>
 </div>
@@ -31,7 +31,7 @@
 <div class="card" style="width: 20rem;">
   <div class="card-body">
     <p class="card-text">
-      Não tem uma conta? <a href="#" class="card-link" (click)="exibirPainelCadastro()">Cadastre-se</a>
+      Não tem uma conta? <a href="#" class="card-link" (click)="exibirPainelCadastro()" >Cadastre-se</a>
     </p> 
   </div>
 </div>
